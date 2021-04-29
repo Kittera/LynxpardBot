@@ -25,18 +25,6 @@ SET msgCount = ?, lastCountDate = ?
 WHERE chanID = ?
 '''
 
-SQL_CHECKOUT_CHANNEL = '''
-UPDATE ChannelMessageCounts
-SET isBeingCounted = ?
-WHERE chanID = ?
-'''
-
-SQL_CHANNEL_BEING_COUNTED = '''
-SELECT isBeingCounted
-FROM ChannelMessageCounts
-WHERE chanID = ?
-'''
-
 
 def record_new_channel(conn, channel_id, num_msgs, init_date):
     cur = conn.cursor()
@@ -61,24 +49,6 @@ def get(conn, channel_id):
 def update_channel_record(conn, new_date, new_message_count, channel_id):
     cur = conn.cursor()
     cur.execute(SQL_UPDATE, (new_message_count, new_date, channel_id))
-    conn.commit()
-
-
-def is_being_counted(conn, channel_id):
-    cur = conn.cursor()
-    cur.execute(SQL_CHANNEL_BEING_COUNTED, (channel_id,))
-    return cur.fetchone()
-
-
-def checkout_channel(conn, channel_id):
-    cur = conn.cursor()
-    cur.execute(SQL_CHECKOUT_CHANNEL, (True, channel_id))
-    conn.commit()
-
-
-def checkin_channel(conn, channel_id):
-    cur = conn.cursor()
-    cur.execute(SQL_CHECKOUT_CHANNEL, (False, channel_id))
     conn.commit()
 
 
