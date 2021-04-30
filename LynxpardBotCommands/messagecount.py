@@ -13,6 +13,7 @@ async def report_msg_count(message, current_counting_list):
             current_counting_list.append(chanl.id)
             count_data = msgCountDB.get(db, chanl.id)
             new_count = 0
+
             with chanl.typing():
                 async for _ in chanl.history(limit=None, after=count_data[1]):
                     new_count += 1
