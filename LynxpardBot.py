@@ -100,5 +100,4 @@ def load_with_catches(full_name: str, ):
     return result
 
 
-with open("botToken.txt") as tokenFile:
-    bot.run(tokenFile.readline())
+bot.run(BOT_TOKEN)

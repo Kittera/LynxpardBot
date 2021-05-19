@@ -3,6 +3,8 @@ import json
 
 from discord.ext.commands import Bot, Cog, Context, command
 
+import LynxpardBotConfig
+
 
 class Norris(Cog):
     def __init__(self, client):
@@ -22,7 +24,7 @@ async def random_norris_fact(ctx: Context):
 
     headers = {
         'accept'         : "application/json",
-        'x-rapidapi-key' : "204e119f90mshb38d3ef92e5d02ap150cbcjsn7d1e54ccddc7",
+        'x-rapidapi-key' : LynxpardBotConfig.RAPID_API_KEY,
         'x-rapidapi-host': "matchilling-chuck-norris-jokes-v1.p.rapidapi.com"
     }
 
