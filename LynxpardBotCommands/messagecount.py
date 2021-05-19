@@ -5,6 +5,7 @@ from contextlib import closing
 
 async def report_msg_count(message, current_counting_list):
     chanl = message.channel
+    print(f'Message count initiated in channel {message.channel.mention}')
 
     with closing(msgCountDB.connection(MY_DB_FILE)) as db:
         channel_has_previous_count = msgCountDB.check_for_channel(db, chanl.id)
