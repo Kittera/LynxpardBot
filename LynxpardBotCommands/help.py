@@ -24,10 +24,6 @@ async def send(help_message):
                          value='Fetches a random fact about Chuck Norris.',
                          inline=False)
 
-    help_embed.add_field(name=f'`{PREFIX}shorten`',
-                         value='Shorten a URL.',
-                         inline=False)
-
     await help_message.channel.send(embed=help_embed,
                                     reference=help_message.to_reference(),
                                     mention_author=False)
