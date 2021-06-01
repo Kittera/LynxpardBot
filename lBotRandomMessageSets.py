@@ -7,3 +7,6 @@ refusals = ["No.", "Nope.", "Not happening.", "Absolutely not.", "How about no?"
 
 def random_refusal_message():
     return refusals[randint(0, len(refusals) - 1)]
+
+
+

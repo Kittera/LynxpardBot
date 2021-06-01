@@ -1,8 +1,30 @@
 from contextlib import closing
+
+from discord.ext.commands import Cog, Bot, Context, command
+
 from LynxpardBotDB import lBotPingCountDB as pingDB
 from LynxpardBotConfig import MY_DB_FILE
 
 
+# define Cog
+class PingPong(Cog):
+    def __init__(self, client: Bot):
+        self.client = client
+
+        @command()
+        async def pong(ctx: Context):
+            await ping(ctx)
+
+        @command()
+        async def ping(ctx: Context):
+            await respond_to_ping(message=ctx.message, bot=self.client)
+
+
+def setup(bot: Bot):
+    bot.add_cog(PingPong(bot))
+
+
+# define behavior for Cog
 async def respond_to_ping(message, bot):
     msg = message.content
     chanl = message.channel

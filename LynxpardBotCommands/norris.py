@@ -7,7 +7,7 @@ import LynxpardBotConfig
 
 
 class Norris(Cog):
-    def __init__(self, client):
+    def __init__(self, client: Bot):
         self.client = client
 
     @command()
@@ -29,11 +29,8 @@ async def random_norris_fact(ctx: Context):
     }
 
     conn.request("GET", "/jokes/random", headers=headers)
+    jay_son = json.loads(conn.getresponse().read().decode("utf-8"))
 
-    res = conn.getresponse()
-    data = res.read()
-    value = json.loads(data.decode("utf-8"))
-
-    await ctx.send(content=value['value'],
+    await ctx.send(content=jay_son['value'],
                    reference=ctx.message.to_reference(),
                    mention_author=False, )
